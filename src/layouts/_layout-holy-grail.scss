@@ -1,0 +1,130 @@
+// Holy Grail should look something like this at a desktop rez.
+// +----------------------------+
+// | header                     |
+// +-----+--------------+-------+
+// | nav | main         | aside |
+// |     |              |       |
+// |     |              |       |
+// |     |              |       |
+// |     |              |       |
+// +-----+--------------+-------+
+// |  footer                    |
+// +----------------------------+
+
+//please make sure you read flexbugs. There are a few issues that you should
+//know about before you start making layouts.
+$sidebar: 300px;
+
+$holy-grail: (
+  layout-name: 'holy-grail',
+  breakpoints: (
+    extra-small: (
+      size: $breakpoint-mobile-small,
+      area: (
+        header: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 1
+        ),
+        main: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 2
+        ),
+        secondary-nav: (
+          grow: 1,
+          shrink: 1,
+          basis: 100%,
+          order: 3
+        ),
+        aside: (
+        grow: 1,
+        shrink: 1,
+        basis: 100%,
+          order: 4
+        ),
+        footer: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 5,
+          hidden: 'true'
+        )
+      )
+    ),
+    small: (
+      size: $breakpoint-tablet,
+      area: (
+        header: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 1
+        ),
+        main: (
+          grow: 1,
+          shrink: 1,
+          basis: 0%,
+          order: 3
+        ),
+        secondary-nav: (
+          grow: 0 0 $sidebar,
+          shrink: 0,
+          basis: $sidebar,
+          order: 2
+        ),
+        aside: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 4
+        ),
+        footer: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 5
+        )
+      )
+    ),
+    medium: (
+      size: $breakpoint-laptop,
+      area: (
+        header: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 1
+        ),
+        main: (
+          grow: 1,
+          shrink: 1,
+          basis: 0%,
+          order: 3
+        ),
+        secondary-nav: (
+          grow: 0,
+          shrink: 0,
+          basis: 20%,
+          order: 2
+        ),
+        aside: (
+          grow: 0,
+          shrink: 0,
+          basis: $sidebar,
+          order: 4
+        ),
+        footer: (
+          grow: 0,
+          shrink: 0,
+          basis: 100%,
+          order: 5
+        )
+      )
+    )
+  )
+);
+
+@include semantic-layout($holy-grail);

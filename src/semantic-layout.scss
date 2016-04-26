@@ -1,0 +1,180 @@
+///////////////////////////////////////////////////////////////////////////////
+// Breakpoints
+///////////////////////////////////////////////////////////////////////////////
+//these are just some basics to start with, feel free to use you're own projects
+//breakpoints
+$breakpoint-mobile-small: 320px;
+$breakpoint-mobile-medium: 375px;
+$breakpoint-mobile-large: 425px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 1024px;
+$breakpoint-laptop-large: 1440px;
+$breakpoint-4k: 2560px;
+
+///////////////////////////////////////////////////////////////////////////////
+// Semantic Layout Mixin
+///////////////////////////////////////////////////////////////////////////////
+
+@mixin generate-area($layout-name, $breakpoint-data) {
+  $breakpoint-size: map-get($breakpoint-data, size);
+  //Get current breakpoint's area map from the value.
+  $breakpoint-areas: map-get($breakpoint-data, area);
+  //Assign the media query the current breakpoint size
+    //assign the layout as a attribute ~="LAYOUT-NAME" so we can select it.
+    //We're using the key value.
+  [layout~="#{$layout-name}"] {
+    //Loop over all the semantic areas map; get their key, get their contents.
+    @each $area-name, $area-data in $breakpoint-areas {
+      //Get the data that dicates visibilty/display none/otherwise.
+      $area-hidden: map-get($area-data, hidden);
+      //Get the short-hand flexbox properties.
+      $area-grow: map-get($area-data, grow);
+      $area-shrink: map-get($area-data, shrink);
+      $area-basis: map-get($area-data, basis);
+      //Get the flexbox order.
+      $area-order: map-get($area-data, order);
+      //use the keyname as the value for the area name.
+      [area~="#{$area-name}"] {
+        //Check to see if we want to display this area at this resolution,hidden
+        //if true, go ahead and hide it.
+        @if $area-hidden == 'true' {
+          //hide this area
+          display: none;
+        }
+        //assign the flex value
+        flex-basis: #{$area-basis};
+        flex-grow: #{$area-grow};
+        flex-shrink: #{$area-shrink};
+        //assign the order value
+        order: #{$area-order};
+      }
+    }
+  }
+}
+
+@mixin semantic-layout($layout-map) {
+  //Get layout Name
+  $layout-name: map-get($layout-map, layout-name);
+  //Get map for breakpoints
+  $breakpoints: map-get($layout-map, breakpoints);
+
+
+  @for $i from 1 through length($breakpoints) {
+    $is-first: $i == 1;
+    $is-last: $i == length($breakpoints);
+
+    $breakpoint-data: nth(map-values($breakpoints), $i);
+    $breakpoint-size: map-get($breakpoint-data, size);
+    $next-data: null;
+
+    @if $is-last == false {
+      $next-data: nth(map-values($breakpoints), $i + 1);
+      $next-size: map-get($next-data, size);
+    }
+
+    @if $is-first {
+      @media all and (min-width: $breakpoint-size) and (max-width: $next-size) {
+        @include generate-area($layout-name, $breakpoint-data);
+      }
+    } @elseif $is-last {
+      @media all and (min-width: $breakpoint-size) {
+        @include generate-area($layout-name, $breakpoint-data);
+      }
+    } @else {
+      @media all and (min-width: $breakpoint-size) and (max-width: $next-size)  {
+        @include generate-area($layout-name, $breakpoint-data);
+      }
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Selectors
+///////////////////////////////////////////////////////////////////////////////
+//The layout setup.
+[layout],
+[area] {
+  box-sizing: border-box;
+}
+
+[layout] {
+  display: flex;
+  flex: 1;
+  //Enables nesting of layouts in flexbox. You shouldn't REALLY be doing this.
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: calc(100% - 1rem);
+}
+
+[area] {
+  display: block;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// debug
+///////////////////////////////////////////////////////////////////////////////
+//You can use this trait in any layout to get a better idea of the positioning
+//and the size
+$debug-layout-outline: #000fff;
+$debug-area-outline: #f00;
+
+[layout~="debug"] {
+  outline: 1px solid $debug-layout-outline;
+  outline-offset: 2px;
+
+  [area] {
+    outline: 1px solid $debug-area-outline;
+    outline-offset: -3px;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// layout tools
+///////////////////////////////////////////////////////////////////////////////
+//Justification
+[layout~="justify-space-around"] {
+  justify-content: space-around;
+}
+
+[layout~="justify-start"] {
+  justify-content: flex-start;
+}
+
+[layout~="justify-space-between"] {
+  justify-content: space-between;
+}
+
+[layout~="justify-end"] {
+  justify-content: flex-end;
+}
+
+[layout~="justify-center"] {
+  justify-content: center;
+}
+//alignment
+[layout~="align-start"] {
+  align-items: flex-start;
+}
+
+[layout~="align-end"] {
+  align-items: flex-end;
+}
+
+[layout~="align-center"] {
+  align-items: center;
+}
+
+[layout~="align-baseline"] {
+  align-items: baseline;
+}
+
+[layout~="align-stretch"] {
+  align-items: stretch;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// layouts
+///////////////////////////////////////////////////////////////////////////////
+@import 'layouts/layout-holy-grail';
