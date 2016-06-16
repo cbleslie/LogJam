@@ -11,14 +11,14 @@
 // |  footer                    |
 // +----------------------------+
 
-//please make sure you read flexbugs. There are a few issues that you should
+//please make sure you read and understand flexbugs. There are a few issues that you should
 //know about before you start making layouts.
 $sidebar: 300px;
 
 $holy-grail: (
   layout-name: 'holy-grail',
   breakpoints: (
-    extra-small: (
+    mobile-small: (
       size: $breakpoint-mobile-small,
       area: (
         header: (
@@ -54,7 +54,7 @@ $holy-grail: (
         )
       )
     ),
-    small: (
+    tablet: (
       size: $breakpoint-tablet,
       area: (
         header: (
@@ -70,7 +70,7 @@ $holy-grail: (
           order: 3
         ),
         secondary-nav: (
-          grow: 0 0 $sidebar,
+          grow: 0,
           shrink: 0,
           basis: $sidebar,
           order: 2
@@ -89,7 +89,7 @@ $holy-grail: (
         )
       )
     ),
-    medium: (
+    laptop: (
       size: $breakpoint-laptop,
       area: (
         header: (
@@ -107,7 +107,7 @@ $holy-grail: (
         secondary-nav: (
           grow: 0,
           shrink: 0,
-          basis: 20%,
+          basis: $sidebar,
           order: 2
         ),
         aside: (

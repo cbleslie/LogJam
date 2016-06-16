@@ -7,18 +7,66 @@
   <link rel="stylesheet" href="semantic-layout.css">
   <link rel="stylesheet" href="
 https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+
+  <style media="screen">
+    html {
+      font-size: 1.2em;
+      font-family:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+    }
+
+
+    a {
+      color: black;
+      text-decoration: none;
+      box-shadow: inset 0 -.1em 0 black;
+      font-weight: bold;
+      text-shadow: 0 .1rem white;
+    }
+
+    a:hover {
+      color: white;
+      background-color: black;
+      outline: .2em solid black;
+      text-shadow: none;
+    }
+
+    a:visited {
+
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      font-size: .6rem;
+    }
+
+    header h1 {
+      margin-left: 1rem;
+    }
+
+    blockquote {
+      border-left: .2em solid black;
+      padding-left: .5em;
+      margin-left: .5em;
+    }
+
+  </style>
+
 </head>
 <body>
   <div layout="holy-grail debug">
     <header area="header">
-      <h1>Header</h1>
+      <div class="wrapper">
+        <h1>Header</h1>
+      </div>
     </header>
 
     <main area="main">
-      <article>
+      <article class="wrapper">
         <h2>Some Article</h2>
         <p>
-          Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+          Allam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. <a href="">Donec ullamcorper nulla non metus</a> auctor fringilla. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
         </p>
         <blockquote>
           Maecenas sed diam eget risus varius blandit sit amet non magna.
@@ -30,33 +78,39 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
     </main>
 
     <nav area="secondary-nav">
-      <h3>Secondary Menu</h3>
-      <ul>
-        <li><a href="">Dapibus Sit</a></li>
-        <li><a href="">Euismod Sollicitudin</a></li>
-        <li><a href="">Vulputate Ornare Nibh</a></li>
-        <li><a href="">Fringilla</a></li>
-      </ul>
+      <div class="wrapper">
+        <h3>Secondary Menu</h3>
+        <ul>
+          <li><a href="">Dapibus Sit</a></li>
+          <li><a href="">Euismod Sollicitudin</a></li>
+          <li><a href="">Vulputate Ornare Nibh</a></li>
+          <li><a href="">Fringilla</a></li>
+        </ul>
+      </div>
     </nav>
 
     <aside area="aside">
-      <h4>Aside</h4>
-      <ul>
-        <li><a href="">Dapibus Sit</a></li>
-        <li><a href="">Euismod Sollicitudin</a></li>
-        <li><a href="">Vulputate Ornare Nibh</a></li>
-        <li><a href="">Fringilla</a></li>
-      </ul>
+      <div class="wrapper">
+        <h4>Aside</h4>
+        <ul>
+          <li><a href="">Dapibus Sit</a></li>
+          <li><a href="">Euismod Sollicitudin</a></li>
+          <li><a href="">Vulputate Ornare Nibh</a></li>
+          <li><a href="">Fringilla</a></li>
+        </ul>
+      </div>
     </aside>
 
     <footer area="footer">
-      <h4>Footer</h4>
-      <ul>
-        <li><a href="">Dapibus Sit</a></li>
-        <li><a href="">Euismod Sollicitudin</a></li>
-        <li><a href="">Vulputate Ornare Nibh</a></li>
-        <li><a href="">Fringilla</a></li>
-      </ul>
+      <div class="wrapper">
+        <h4>Footer</h4>
+        <ul>
+          <li><a href="">Dapibus Sit</a></li>
+          <li><a href="">Euismod Sollicitudin</a></li>
+          <li><a href="">Vulputate Ornare Nibh</a></li>
+          <li><a href="">Fringilla</a></li>
+        </ul>
+      </div>
     </footer>
   </div>
 </body>
