@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Defaults
 ///////////////////////////////////////////////////////////////////////////////
-$layout-margin: 1rem;
+$default-semantic-layout-margin: 1rem;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Breakpoints
@@ -20,7 +20,7 @@ $breakpoint-4k: 2560px;
 // Semantic Layout Mixin
 ///////////////////////////////////////////////////////////////////////////////
 
-@mixin generate-area($layout-name, $breakpoint-data) {
+@mixin generate-area($layout-name, $margin, $breakpoint-data) {
   $breakpoint-size: map-get($breakpoint-data, size);
   //Get current breakpoint's area map from the value.
   $breakpoint-areas: map-get($breakpoint-data, area);
@@ -28,6 +28,14 @@ $breakpoint-4k: 2560px;
     //assign the layout as a attribute ~="LAYOUT-NAME" so we can select it.
     //We're using the key value.
   [layout~="#{$layout-name}"] {
+    //this for IE10-11. The reason why we need this is flex basis doesn't
+    //account for `box-sizing: border-box`. It is fixed in Edge. If you're
+    //targeting only **evergreen** browsers you can get away with not using it.
+    //Otherwise. This is the pain of having nice things.
+    .wrapper {
+      margin-left: $margin / 2;
+      margin-right: $margin / 2;
+    }
     //Loop over all the semantic areas map; get their key, get their contents.
     @each $area-name, $area-data in $breakpoint-areas {
       //Get the data that dicates visibilty/display none/otherwise.
@@ -60,6 +68,8 @@ $breakpoint-4k: 2560px;
 @mixin semantic-layout($layout-map) {
   //Get layout Name
   $layout-name: map-get($layout-map, layout-name);
+  //Get layout margin
+  $margin: map-get($layout-map, margin);
   //Get map for breakpoints
   $breakpoints: map-get($layout-map, breakpoints);
 
@@ -70,7 +80,7 @@ $breakpoint-4k: 2560px;
 
     $breakpoint-data: nth(map-values($breakpoints), $i);
     $breakpoint-size: map-get($breakpoint-data, size);
-    //next data needs to be defined due to scopeing.
+    //
     $next-data: null;
 
     @if $is-last == false {
@@ -80,15 +90,15 @@ $breakpoint-4k: 2560px;
 
     @if $is-first {
       @media all and (min-width: $breakpoint-size) and (max-width: $next-size) {
-        @include generate-area($layout-name, $breakpoint-data);
+        @include generate-area($layout-name, $margin, $breakpoint-data);
       }
     } @elseif $is-last {
       @media all and (min-width: ($breakpoint-size + 1px)) {
-        @include generate-area($layout-name, $breakpoint-data);
+        @include generate-area($layout-name, $margin, $breakpoint-data);
       }
     } @else {
       @media all and (min-width: ($breakpoint-size + 1px)) and (max-width: $next-size)  {
-        @include generate-area($layout-name, $breakpoint-data);
+        @include generate-area($layout-name, $margin, $breakpoint-data);
       }
     }
   }
@@ -113,15 +123,6 @@ $breakpoint-4k: 2560px;
 
 [area] {
   display: block;
-
-  .wrapper {
-    //this for IE10-11. The reason why we need this is flex basis doesn't
-    //account for `box-sizing: border-box`. It is fixed in Edge. If you're
-    //targeting only **evergreen** browsers you can get away with not using it.
-    //Otherwise. This is the pain of having nice things.
-    margin-left: $layout-margin / 2;
-    margin-right: $layout-margin / 2;
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -135,11 +136,15 @@ $debug-wrapper-outline: #ffa500;
 
 [layout~="debug"] {
   outline: 1px solid $debug-layout-outline;
-  outline-offset: 2px;
+  outline-offset: 0;
+
+  .wrapper {
+    outline: 1px solid $debug-wrapper-outline;
+  }
 
   [area] {
     outline: 1px solid $debug-area-outline;
-    outline-offset: -3px;
+    outline-offset: -2px;
   }
 }
 
@@ -171,13 +176,13 @@ $debug-wrapper-outline: #ffa500;
 
 [data-area~="margin-bottom"] {
   .wrapper {
-    margin-bottom: $layout-margin / 2;
+    margin-bottom: $default-semantic-layout-margin / 2;
   }
 }
 
 [data-area~="margin-top"] {
   .wrapper {
-    margin-top: $layout-margin / 2;
+    margin-top: $default-semantic-layout-margin / 2;
   }
 }
 
@@ -233,14 +238,14 @@ $debug-wrapper-outline: #ffa500;
 // Layout Margin Modifications
 ///////////////////////////////////////////////////////////////////////////////
 [data-layout~="margin-bottom"] {
-  margin-bottom: $layout-margin / 2;
+  margin-bottom: $default-semantic-layout-margin / 2;
 }
 
 [data-layout~="margin-top"] {
-  margin-top: $layout-margin / 2;
+  margin-top: $default-semantic-layout-margin / 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Out of The Box Layouts
 ///////////////////////////////////////////////////////////////////////////////
-@import 'layouts/layout-holy-grail';
+@import 'layout-examples/layout-holy-grail';
