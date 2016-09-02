@@ -15,11 +15,11 @@
 //know about before you start making layouts.
 // Flexbugs: https://github.com/philipwalton/flexbugs
 $layout-sidebar: 300px;
-$layout-margin: 2rem;
+$layout-margin: 4rem;
 
 $holy-grail: (
   layout-name: 'holy-grail',
-  margin: $layout-margin,
+  margin-size: $layout-margin,
   breakpoints: (
     mobile-small: (
       size: $breakpoint-mobile-small,
@@ -28,32 +28,62 @@ $holy-grail: (
           grow: 0,
           shrink: 0,
           basis: 100%,
-          order: 1
+          order: 1,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         main: (
           grow: 0,
           shrink: 0,
           basis: 100%,
-          order: 2
+          order: 2,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         secondary-nav: (
           grow: 1,
           shrink: 1,
           basis: 100%,
-          order: 3
+          order: 3,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         aside: (
-        grow: 1,
-        shrink: 1,
-        basis: 100%,
-          order: 4
+          grow: 1,
+          shrink: 1,
+          basis: 100%,
+          order: 4,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          ),
+          hidden: true
         ),
         footer: (
           grow: 0,
           shrink: 0,
           basis: 100%,
           order: 5,
-          hidden: 'true'
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         )
       )
     ),
@@ -64,31 +94,61 @@ $holy-grail: (
           grow: 0,
           shrink: 0,
           basis: 100%,
-          order: 1
+          order: 1,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         main: (
           grow: 1,
           shrink: 1,
           basis: 0%,
-          order: 3
+          order: 3,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         secondary-nav: (
           grow: 0,
           shrink: 0,
           basis: $layout-sidebar,
-          order: 2
+          order: 2,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         aside: (
           grow: 0,
           shrink: 0,
           basis: 100%,
-          order: 4
+          order: 4,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         footer: (
           grow: 0,
           shrink: 0,
           basis: 100%,
-          order: 5
+          order: 5,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         )
       )
     ),
@@ -99,31 +159,61 @@ $holy-grail: (
           grow: 0,
           shrink: 0,
           basis: 100%,
-          order: 1
+          order: 1,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         main: (
           grow: 1,
           shrink: 1,
           basis: 0%,
-          order: 3
+          order: 3,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         secondary-nav: (
           grow: 0,
           shrink: 0,
           basis: $layout-sidebar,
-          order: 2
+          order: 2,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         aside: (
           grow: 0,
           shrink: 0,
           basis: $layout-sidebar,
-          order: 4
+          order: 4,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         ),
         footer: (
           grow: 0,
           shrink: 0,
           basis: 100%,
-          order: 5
+          order: 5,
+          margin: (
+            bottom: true,
+            left: true,
+            right: true,
+            top: true
+          )
         )
       )
     )

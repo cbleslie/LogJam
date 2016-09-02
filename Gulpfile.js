@@ -21,7 +21,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('html', function () {
-  gulp.src(paths.src + 'index.html')
+  gulp.src(paths.src + 'layout-examples/index.html')
     .pipe(gulp.dest(paths.dist));
 });
 
