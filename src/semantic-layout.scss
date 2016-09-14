@@ -43,8 +43,9 @@ $breakpoint-4k: 2560px;
       $area-margin-map: map-get($area-data, margin);
       // @debug $area-margin-map;
 
-      //use the keyname as the value for the area name.
-      [data-area~="#{$area-name}"] {
+      //use the keyname as the value for the area name. ">" is used to only
+      //directly reference the child. So we can nest layouts if needed.
+      > [data-area~="#{$area-name}"] {
         //Check to see if we want to display this area at this resolution,
         //hidden if true, go ahead and hide it.
         @if ($area-hidden) {
@@ -166,47 +167,58 @@ $debug-wrapper-outline: #ffa500;
 // Layout Tools
 ///////////////////////////////////////////////////////////////////////////////
 //Justification
-[data-layout~="justify-space-around"] {
+[data-layout~="justify-space-around"],
+[data-area~="justify-space-around"] {
   justify-content: space-around;
 }
 
-[data-layout~="justify-start"] {
+[data-layout~="justify-start"],
+[data-area~="justify-start"] {
   justify-content: flex-start;
 }
 
-[data-layout~="justify-space-between"] {
+[data-layout~="justify-space-between"],
+[data-area~="justify-space-between"] {
   justify-content: space-between;
 }
 
-[data-layout~="justify-end"] {
+[data-layout~="justify-end"],
+[data-area~="justify-end"] {
   justify-content: flex-end;
 }
 
-[data-layout~="justify-center"] {
+[data-layout~="justify-center"],
+[data-area~="justify-center"] {
   justify-content: center;
 }
 //alignment
-[data-layout~="align-start"] {
+[data-layout~="align-start"],
+[data-area~="align-start"] {
   align-items: flex-start;
 }
 
-[data-layout~="align-end"] {
+[data-layout~="align-end"],
+[data-area~="align-end"] {
   align-items: flex-end;
 }
 
-[data-layout~="align-center"] {
+[data-layout~="align-center"],
+[data-area~="align-center"] {
   align-items: center;
 }
 
-[data-layout~="align-baseline"] {
+[data-layout~="align-baseline"],
+[data-area~="align-baseline"] {
   align-items: baseline;
 }
 
-[data-layout~="align-stretch"] {
+[data-layout~="align-stretch"],
+[data-area~="align-stretch"] {
   align-items: stretch;
 }
 
-[data-layout~="no-wrap"] {
+[data-layout~="no-wrap"],
+[data-area~="no-wrap"] {
   flex-wrap: nowrap;
 }
 
