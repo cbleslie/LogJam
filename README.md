@@ -1,7 +1,7 @@
 #LogJam
 
 ##About Log Jam
-This is an opinionated Sass `mixin` that I created to help me manage the creation of complex layouts of the projects and software I am involved in developing, parts of this `mixin` have been in production for a year or two, and I feel it's finally useful enough that it *might* be of help to other people.
+This is an opinionated Sass `mixin` that I created to help me manage the creation of complex layouts of the projects and software I am involved in developing, parts of this `mixin` have been in production for a year or two and I feel it finally useful enough that it *might* be of help to other people.
 
 ##Motivation
 
