@@ -4,13 +4,13 @@ var plugins = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
 
 var paths = {
-  dist: 'dist/',
-  src: 'src/',
+  dist: 'examples/',
+  src: 'logjam.scss',
 };
 
 
 gulp.task('styles', function () {
-  gulp.src(paths.src + '**/*.scss')
+  gulp.src(paths.src)
     .pipe(plugins.sass().on('error', plugins.sass.logError))
     .pipe(plugins.autoprefixer({
       browsers: ['IE 10','last 4 versions'],
@@ -21,7 +21,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('html', function () {
-  gulp.src(paths.src + 'layout-examples/index.html')
+  gulp.src('examples/index.html')
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -30,6 +30,6 @@ gulp.task('default', ['html','styles'], function() {
       server: paths.dist
   });
 
-  gulp.watch(paths.src + "*.scss", ['styles']);
-  gulp.watch(paths.src + "*.html", ['html']).on('change', browserSync.reload);
+  gulp.watch(paths.src, ['styles']);
+  gulp.watch('examples/index.html', ['html']).on('change', browserSync.reload);
 });

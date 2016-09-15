@@ -48,7 +48,7 @@ $holy-grail: (
             top: true
           )
         ),
-        secondary-nav: (
+        nav: (
           grow: 1,
           shrink: 1,
           basis: 100%,
@@ -114,7 +114,7 @@ $holy-grail: (
             top: true
           )
         ),
-        secondary-nav: (
+        nav: (
           grow: 0,
           shrink: 0,
           basis: $layout-sidebar,
@@ -179,7 +179,7 @@ $holy-grail: (
             top: true
           )
         ),
-        secondary-nav: (
+        nav: (
           grow: 0,
           shrink: 0,
           basis: $layout-sidebar,
@@ -220,4 +220,4 @@ $holy-grail: (
   )
 );
 
-@include semantic-layout($holy-grail);
+@include logjam($holy-grail);

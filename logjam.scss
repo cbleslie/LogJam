@@ -1,13 +1,22 @@
+//       ////////// //////////         // ////////// ///////////
+//       //      // //                 // //      // //  //   //
+//       //      // //  //////         // //      // //  //   //
+//       //      // //      // //      // ////////// //  //   //
+//////// ////////// ////////// ////////// //      // //       //
+
+//LogJam
+
 ///////////////////////////////////////////////////////////////////////////////
 // Dev Switches
 ///////////////////////////////////////////////////////////////////////////////
 //Set this to 'true' when you need to develop using the example pages.
-$dev: true;
+$use-out-of-the-box: false;
+$layout-debug: false;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Breakpoints
 ///////////////////////////////////////////////////////////////////////////////
-//these are just some basics to start with, feel free to use you're own projects
+//these are just some basics to start with, feel free to use your own project's
 //breakpoints
 $breakpoint-mobile-small: 320px;
 $breakpoint-mobile-medium: 375px;
@@ -25,15 +34,14 @@ $breakpoint-4k: 2560px;
   $breakpoint-size: map-get($breakpoint-data, size);
   //Get current breakpoint's area map from the value.
   $breakpoint-areas: map-get($breakpoint-data, area);
-  //Assign the media query the current breakpoint size
-    //assign the layout as a attribute ~="LAYOUT-NAME" so we can select it.
-    //We're using the key value.
+  //assign the layout as a attribute ~="LAYOUT-NAME" so we can select it.
+  //We're using the key value.
   [data-layout~="#{$layout-name}"] {
     //Loop over all the semantic areas map; get their key, get their contents.
     @each $area-name, $area-data in $breakpoint-areas {
       //Get the data that dicates visibilty/display none/otherwise.
       $area-hidden: map-get($area-data, hidden);
-      //Get the short-hand flexbox properties.
+      //Get the flexbox properties.
       $area-grow: map-get($area-data, grow);
       $area-shrink: map-get($area-data, shrink);
       $area-basis: map-get($area-data, basis);
@@ -41,10 +49,10 @@ $breakpoint-4k: 2560px;
       $area-order: map-get($area-data, order);
       //grab the map for margin.
       $area-margin-map: map-get($area-data, margin);
-      // @debug $area-margin-map;
 
       //use the keyname as the value for the area name. ">" is used to only
-      //directly reference the child. So we can nest layouts if needed.
+      //directly reference the child. So we can nest layouts without fear if
+      //needed.
       > [data-area~="#{$area-name}"] {
         //Check to see if we want to display this area at this resolution,
         //hidden if true, go ahead and hide it.
@@ -81,7 +89,7 @@ $breakpoint-4k: 2560px;
   }
 }
 
-@mixin semantic-layout($layout-map) {
+@mixin filayout($layout-map) {
   //Get layout Name
   $layout-name: map-get($layout-map, layout-name);
   //Get layout margin
@@ -126,6 +134,7 @@ $breakpoint-4k: 2560px;
 [data-layout],
 [data-area] {
   //I assume you have this on, but I can't trust you, so there.
+  //I know this dosen't work in all the IE's, but it's worth a shot.
   box-sizing: border-box;
 }
 
@@ -145,21 +154,23 @@ $breakpoint-4k: 2560px;
 ///////////////////////////////////////////////////////////////////////////////
 //You can use this trait in any layout to get a better idea of the positioning
 //and the size
-$debug-layout-outline: #000fff;
-$debug-area-outline: #f00;
-$debug-wrapper-outline: #ffa500;
+@if ($layout-debug) {
+  $debug-layout-outline: #000fff;
+  $debug-area-outline: #f00;
+  $debug-wrapper-outline: #ffa500;
 
-[data-layout~="debug"] {
-  outline: 1px solid $debug-layout-outline;
-  outline-offset: 0;
+  [data-layout] {
+    outline: 1px solid $debug-layout-outline;
+    outline-offset: 0;
 
-  .wrapper {
-    outline: 1px solid $debug-wrapper-outline;
-  }
+    .wrapper {
+      outline: 1px solid $debug-wrapper-outline;
+    }
 
-  [data-area] {
-    outline: 1px solid $debug-area-outline;
-    outline-offset: -2px;
+    [data-area] {
+      outline: 1px solid $debug-area-outline;
+      outline-offset: -2px;
+    }
   }
 }
 
@@ -167,64 +178,53 @@ $debug-wrapper-outline: #ffa500;
 // Layout Tools
 ///////////////////////////////////////////////////////////////////////////////
 //Justification
-[data-layout~="justify-space-around"],
-[data-area~="justify-space-around"] {
+[data-layout~="justify-space-around"] {
   justify-content: space-around;
 }
 
-[data-layout~="justify-start"],
-[data-area~="justify-start"] {
+[data-layout~="justify-start"] {
   justify-content: flex-start;
 }
 
-[data-layout~="justify-space-between"],
-[data-area~="justify-space-between"] {
+[data-layout~="justify-space-between"] {
   justify-content: space-between;
 }
 
-[data-layout~="justify-end"],
-[data-area~="justify-end"] {
+[data-layout~="justify-end"] {
   justify-content: flex-end;
 }
 
-[data-layout~="justify-center"],
-[data-area~="justify-center"] {
+[data-layout~="justify-center"] {
   justify-content: center;
 }
 //alignment
-[data-layout~="align-start"],
-[data-area~="align-start"] {
+[data-layout~="align-start"] {
   align-items: flex-start;
 }
 
-[data-layout~="align-end"],
-[data-area~="align-end"] {
+[data-layout~="align-end"] {
   align-items: flex-end;
 }
 
-[data-layout~="align-center"],
-[data-area~="align-center"] {
+[data-layout~="align-center"] {
   align-items: center;
 }
 
-[data-layout~="align-baseline"],
-[data-area~="align-baseline"] {
+[data-layout~="align-baseline"] {
   align-items: baseline;
 }
 
-[data-layout~="align-stretch"],
-[data-area~="align-stretch"] {
+[data-layout~="align-stretch"] {
   align-items: stretch;
 }
 
-[data-layout~="no-wrap"],
-[data-area~="no-wrap"] {
+[data-layout~="no-wrap"] {
   flex-wrap: nowrap;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Out of The Box Layouts
 ///////////////////////////////////////////////////////////////////////////////
-@if ($dev) {
-  @import 'layout-examples/layout-holy-grail';
+@if ($use-out-of-the-box) {
+  @import 'examples/layout-holy-grail';
 }

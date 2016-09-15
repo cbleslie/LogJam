@@ -1,10 +1,10 @@
 {
-  "name": "semantic-layout",
+  "name": "logjam",
   "version": "0.0.0",
-  "description": "A flexbox layout tool.",
-  "main": "Gulpfile.js",
+  "description": "A flexbox layout mixin tool.",
+  "main": "logjam.scss",
   "files":[
-    "src/semantic-layout.scss"
+    "logjam.scss"
   ],
   "dependencies": {
   },
