@@ -4,11 +4,13 @@
 This is an opinionated Sass `mixin` that I created to help me manage the creation of complex layouts of the projects and software I am involved in developing, parts of this `mixin` have been in production for a year or two and I feel it finally useful enough that it *might* be of help to other people.
 
 ##Installation
-`npm install logjam`
+`npm install logjam-scss`
 
 
 
 ##Usage
+If you want to use flexbox, you really should use an auto-prefixer. This `mixin` **does not handle, and will never handle vendor prefixing**.
+
 ###SCSS
 ```SCSS
 $holy-grail: (
