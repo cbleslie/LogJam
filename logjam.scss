@@ -9,8 +9,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Dev Switches
 ///////////////////////////////////////////////////////////////////////////////
-//Set this to 'true' when you need to develop using the example pages.
-$use-out-of-the-box: false;
+// Set this to 'true' when you need to develop using the example pages.
+$use-out-of-the-box: true;
+// Set to true for debug outlines.
 $layout-debug: false;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -32,52 +33,52 @@ $breakpoint-4k: 2560px;
 
 @mixin generate-area($layout-name, $margin-size, $breakpoint-data) {
   $breakpoint-size: map-get($breakpoint-data, size);
-  //Get current breakpoint's area map from the value.
+  // Get current breakpoint's area map from the value.
   $breakpoint-areas: map-get($breakpoint-data, area);
-  //assign the layout as a attribute ~="LAYOUT-NAME" so we can select it.
-  //We're using the key value.
+  // assign the layout as a attribute ~="LAYOUT-NAME" so we can select it.
+  // We're using the key value.
   [data-layout~="#{$layout-name}"] {
-    //Loop over all the semantic areas map; get their key, get their contents.
+    // Loop over all the semantic areas map; get their key, get their contents.
     @each $area-name, $area-data in $breakpoint-areas {
-      //Get the data that dicates visibilty/display none/otherwise.
+      // Get the data that dicates visibilty/display none/otherwise.
       $area-hidden: map-get($area-data, hidden);
-      //Get the flexbox properties.
+      // Get the flexbox properties.
       $area-grow: map-get($area-data, grow);
       $area-shrink: map-get($area-data, shrink);
       $area-basis: map-get($area-data, basis);
-      //Get the flexbox order.
+      // Get the flexbox order.
       $area-order: map-get($area-data, order);
-      //grab the map for margin.
+      // grab the map for margin.
       $area-margin-map: map-get($area-data, margin);
 
-      //use the keyname as the value for the area name. ">" is used to only
-      //directly reference the child. So we can nest layouts without fear if
-      //needed.
+      // use the keyname as the value for the area name. ">" is used to only
+      // directly reference the child. So we can nest layouts without fear if
+      // needed.
       > [data-area~="#{$area-name}"] {
-        //Check to see if we want to display this area at this resolution,
-        //hidden if true, go ahead and hide it.
+        // Check to see if we want to display this area at this resolution,
+        // hidden if true, go ahead and hide it.
         @if ($area-hidden) {
-          //hide this area
+          // hide this area
           display: none;
         }
-        //assign the flex value
+        // assign the flex value
         flex-basis: #{$area-basis};
         flex-grow: #{$area-grow};
         flex-shrink: #{$area-shrink};
-        //assign the order value
+        // assign the order value
         order: #{$area-order};
-        //Why wrapper?
-        //this for IE10-11. The reason why we **need** this is flex basis
-        //doesn't account for `box-sizing: border-box`. It is fixed in Edge. We
-        //also get nice things like dynamic/default margin's by making wraper do
-        //this work.
+        // Why wrapper?
+        // this for IE10-11. The reason why we **need** this is flex basis
+        // doesn't account for `box-sizing: border-box`. It is fixed in Edge. We
+        // also get nice things like dynamic/default margin's by making wraper do
+        // this work.
         .wrapper {
           @each $margin-name, $margin-value in $area-margin-map {
             @if ($margin-value == true) {
-              //Render default margins as specified in $margin-size supplied
+              // Render default margins as specified in $margin-size supplied
               margin-#{$margin-name}: $margin-size / 2;
             } @else if ($margin-value == false) {
-              //Don't render anything
+              // Don't render anything
             } @else {
               // Render custom value
               margin-#{$margin-name}: $margin-value;
@@ -89,12 +90,12 @@ $breakpoint-4k: 2560px;
   }
 }
 
-@mixin filayout($layout-map) {
-  //Get layout Name
+@mixin logjam($layout-map) {
+  // Get layout Name
   $layout-name: map-get($layout-map, layout-name);
-  //Get layout margin
+  // Get layout margin
   $margin-size: map-get($layout-map, margin-size);
-  //Get map for breakpoints
+  // Get map for breakpoints
   $breakpoints: map-get($layout-map, breakpoints);
 
 
@@ -130,11 +131,11 @@ $breakpoint-4k: 2560px;
 ///////////////////////////////////////////////////////////////////////////////
 // Selectors
 ///////////////////////////////////////////////////////////////////////////////
-//The layout setup.
+// The layout setup.
 [data-layout],
 [data-area] {
-  //I assume you have this on, but I can't trust you, so there.
-  //I know this dosen't work in all the IE's, but it's worth a shot.
+  // I assume you have this on, but I can't trust you.
+  // I know this dosen't work in all the IE's, but it's worth a shot.
   box-sizing: border-box;
 }
 
@@ -152,8 +153,8 @@ $breakpoint-4k: 2560px;
 ///////////////////////////////////////////////////////////////////////////////
 // Debug
 ///////////////////////////////////////////////////////////////////////////////
-//You can use this trait in any layout to get a better idea of the positioning
-//and the size
+// You can use this trait in any layout to get a better idea of the positioning
+// and the size
 @if ($layout-debug) {
   $debug-layout-outline: #000fff;
   $debug-area-outline: #f00;
@@ -177,7 +178,7 @@ $breakpoint-4k: 2560px;
 ///////////////////////////////////////////////////////////////////////////////
 // Layout Tools
 ///////////////////////////////////////////////////////////////////////////////
-//Justification
+// Justification
 [data-layout~="justify-space-around"] {
   justify-content: space-around;
 }
@@ -197,7 +198,7 @@ $breakpoint-4k: 2560px;
 [data-layout~="justify-center"] {
   justify-content: center;
 }
-//alignment
+// Aglignment
 [data-layout~="align-start"] {
   align-items: flex-start;
 }
