@@ -226,7 +226,7 @@ $holy-grail: (
 ```HTML
 <!-- We call the layout in [data-layout] we want to use -->
 <div data-layout="holy-grail">    
-	
+
 	<!-- [data-area]'s are regions defined in the SCSS control.-->
     <header data-area="header">
     	<!-- .wrapper exists to control margin, and prevent -->
@@ -235,7 +235,7 @@ $holy-grail: (
         <!-- Your stuff. -->
       </div>
     </header>
-	
+
 	<!-- We repeat this for every area defined. You can duplicate -->
 	<!-- areas if needed. This is useful for evenly repeating blocks. -->
     <main data-area="main">
@@ -261,7 +261,7 @@ $holy-grail: (
         <!-- Your stuff. -->
       </div>
     </footer>
-    
+
   </div>
 ```
 ##Motivation
@@ -269,7 +269,6 @@ What was once simple, is now complex. From our "phones" to TVs; to even refriger
 
 ##Benifits
 Maintainability, and standardized usage, relatively clean markup, clear separation of responsibility.
-?≥
 
 ##Drawbacks
-LogJam for all practical purposes produces a lot of CSS, or what my standards consider a lot of CSS, especially when run through auto-prefixer. This is *mostly* due to the fact that it's taken quite some time for browsers to settle on the semantics for the layout module itself. Compression helps with this issue quite a bit. It also has the user burden of being reliant on the somewhat confusing nature of the flexbox properties themselves. If you don't know how flexbox works, you will have trouble or be completely baffled using it.
+LogJam for all practical purposes produces a lot of CSS, or what my standards consider a lot of CSS, especially when run through auto-prefixer. This is *mostly* due to the fact that it's taken quite some time for browsers to settle on the semantics for the flexbox module itself. Compression helps with this issue quite a bit. It also has the user-burden of being reliant on the somewhat confusing nature of the flexbox properties themselves. If you don't know how flexbox works, you will have trouble or be completely baffled using this `mixin` it.
