@@ -6,6 +6,9 @@ This is an opinionated Sass `mixin` that I created to help me manage the creatio
 ##Installation
 `npm install logjam-scss`
 
+In your sass build, somewhere...  
+`@import 'the/path/to/logjam';`
+
 
 
 ##Usage
