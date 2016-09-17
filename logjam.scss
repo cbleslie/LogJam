@@ -10,7 +10,7 @@
 // Dev Switches
 ///////////////////////////////////////////////////////////////////////////////
 // Set to true for debug outlines.
-$layout-debug: false;
+$layout-debug: true;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Breakpoints
@@ -36,6 +36,11 @@ $breakpoint-4k: 2560px;
   // assign the layout as a attribute ~="LAYOUT-NAME" so we can select it.
   // We're using the key value.
   [data-layout~="#{$layout-name}"] {
+    // Assigning the default margins for all the areas' wrappers.
+    .wrapper {
+      margin: $margin-size / 2;
+    }
+
     // Loop over all the semantic areas map; get their key, get their contents.
     @each $area-name, $area-data in $breakpoint-areas {
       // Get the data that dicates visibilty/display none/otherwise.
@@ -48,7 +53,6 @@ $breakpoint-4k: 2560px;
       $area-order: map-get($area-data, order);
       // grab the map for margin.
       $area-margin-map: map-get($area-data, margin);
-
       // use the keyname as the value for the area name. ">" is used to only
       // directly reference the child. So we can nest layouts without fear if
       // needed.
@@ -73,10 +77,10 @@ $breakpoint-4k: 2560px;
         .wrapper {
           @each $margin-name, $margin-value in $area-margin-map {
             @if ($margin-value == true) {
-              // Render default margins as specified in $margin-size supplied
-              margin-#{$margin-name}: $margin-size / 2;
+              // Don't render anything it's already set.
             } @else if ($margin-value == false) {
-              // Don't render anything
+              // Kill margin.
+              margin-#{$margin-name}: 0;
             } @else {
               // Render custom value
               margin-#{$margin-name}: $margin-value;
@@ -225,4 +229,4 @@ $breakpoint-4k: 2560px;
 // Out of The Box Layouts
 ///////////////////////////////////////////////////////////////////////////////
 //Uncomment to develop using examples.
-// @import 'examples/layout-holy-grail';
+@import 'examples/layout-holy-grail';

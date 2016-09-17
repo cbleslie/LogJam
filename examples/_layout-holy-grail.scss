@@ -30,10 +30,10 @@ $holy-grail: (
           basis: 100%,
           order: 1,
           margin: (
-            bottom: true,
-            left: true,
-            right: true,
-            top: true
+            bottom: 2rem,
+            left: false,
+            right: false,
+            top: 2rem
           )
         ),
         main: (
