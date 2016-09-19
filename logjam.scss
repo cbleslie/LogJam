@@ -74,7 +74,7 @@ $breakpoint-4k: 2560px;
         // doesn't account for `box-sizing: border-box`. It is fixed in Edge. We
         // also get nice things like dynamic/default margin's by making wraper do
         // this work.
-        .wrapper {
+        > .wrapper {
           @each $margin-name, $margin-value in $area-margin-map {
             @if ($margin-value == true) {
               // Don't render anything it's already set.
