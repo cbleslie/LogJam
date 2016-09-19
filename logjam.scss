@@ -29,7 +29,7 @@ $breakpoint-4k: 2560px;
 // Semantic Layout Mixin
 ///////////////////////////////////////////////////////////////////////////////
 
-@mixin generate-area($layout-name, $margin-size, $breakpoint-data) {
+@mixin make-area($layout-name, $margin-size, $breakpoint-data) {
   $breakpoint-size: map-get($breakpoint-data, size);
   // Get current breakpoint's area map from the value.
   $breakpoint-areas: map-get($breakpoint-data, area);
@@ -108,6 +108,7 @@ $breakpoint-4k: 2560px;
     $breakpoint-data: nth(map-values($breakpoints), $i);
     $breakpoint-size: map-get($breakpoint-data, size);
     $next-data: null;
+    $next-size: null;
 
     @if $is-last == false {
       $next-data: nth(map-values($breakpoints), $i + 1);
@@ -116,15 +117,15 @@ $breakpoint-4k: 2560px;
 
     @if $is-first {
       @media all and (min-width: $breakpoint-size) and (max-width: $next-size) {
-        @include generate-area($layout-name, $margin-size, $breakpoint-data);
+        @include make-area($layout-name, $margin-size, $breakpoint-data);
       }
     } @elseif $is-last {
       @media all and (min-width: ($breakpoint-size + 1px)) {
-        @include generate-area($layout-name, $margin-size, $breakpoint-data);
+        @include make-area($layout-name, $margin-size, $breakpoint-data);
       }
     } @else {
       @media all and (min-width: ($breakpoint-size + 1px)) and (max-width: $next-size)  {
-        @include generate-area($layout-name, $margin-size, $breakpoint-data);
+        @include make-area($layout-name, $margin-size, $breakpoint-data);
       }
     }
   }
