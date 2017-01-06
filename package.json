@@ -1,11 +1,8 @@
 {
   "name": "logjam-scss",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A flexbox layout mixin tool.",
   "main": "logjam.scss",
-  "files":[
-    "logjam.scss"
-  ],
   "dependencies": {
   },
   "devDependencies": {
