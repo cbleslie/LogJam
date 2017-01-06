@@ -1,0 +1,105 @@
+///////////////////////////////////////////////////////////////////////////////
+// Dev Switches
+///////////////////////////////////////////////////////////////////////////////
+// Set to true for debug outlines.
+$layout-debug: false;
+
+///////////////////////////////////////////////////////////////////////////////
+// Selectors
+///////////////////////////////////////////////////////////////////////////////
+// The layout setup.
+[data-layout],
+[data-area] {
+  // I assume you have this on, but I can't trust you.
+  // I know this dosen't work in all the IE's, but it's worth a shot.
+  box-sizing: border-box;
+}
+
+[data-layout] {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+[data-area] {
+  display: block;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Debug
+///////////////////////////////////////////////////////////////////////////////
+// You can use this trait in any layout to get a better idea of the positioning
+// and the size
+@if ($layout-debug) {
+  $debug-layout-outline: #000fff;
+  $debug-area-outline: #f00;
+  $debug-wrapper-outline: #ffa500;
+
+  [data-layout] {
+    outline: 1px solid $debug-layout-outline;
+    outline-offset: 0;
+
+    .wrapper {
+      outline: 1px solid $debug-wrapper-outline;
+    }
+
+    [data-area] {
+      outline: 1px solid $debug-area-outline;
+      outline-offset: -2px;
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Layout Tools
+///////////////////////////////////////////////////////////////////////////////
+// Justification
+[data-layout~="justify-space-around"] {
+  justify-content: space-around;
+}
+
+[data-layout~="justify-start"] {
+  justify-content: flex-start;
+}
+
+[data-layout~="justify-space-between"] {
+  justify-content: space-between;
+}
+
+[data-layout~="justify-end"] {
+  justify-content: flex-end;
+}
+
+[data-layout~="justify-center"] {
+  justify-content: center;
+}
+// Aglignment
+[data-layout~="align-start"] {
+  align-items: flex-start;
+}
+
+[data-layout~="align-end"] {
+  align-items: flex-end;
+}
+
+[data-layout~="align-center"] {
+  align-items: center;
+}
+
+[data-layout~="align-baseline"] {
+  align-items: baseline;
+}
+
+[data-layout~="align-stretch"] {
+  align-items: stretch;
+}
+// Direction
+[data-layout~="vertical"] {
+  flex-direction: column;
+}
+
+// Misc.
+[data-layout~="no-wrap"] {
+  flex-wrap: nowrap;
+}
