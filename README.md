@@ -7,9 +7,18 @@ This is an opinionated Sass `mixin` that I created to help me manage the creatio
 `npm install --save-dev logjam-scss`
 
 In your sass build, somewhere...  
+
 `@import 'the/path/to/logjam';`
 
+That statement will digest all the sub-modules.
 
+Or if need be, you can call the mixin independently from the static SCSS files...  
+
+`@import 'the/path/to/logjam/mixins`  
+`@import 'the/path/to/logjam/selectors`  
+`@import 'the/path/to/logjam/settings`  
+
+This is useful in a ITCSS type of situation.
 
 ## Usage
 If you want to use flexbox, you really should use an auto-prefixer. This `mixin` **does not handle, and will never handle vendor prefixing**.
