@@ -14,9 +14,9 @@ That statement will digest all the sub-modules.
 
 Or if need be, you can call the mixin independently from the static SCSS files...  
 
-`@import 'the/path/to/logjam/mixins`  
-`@import 'the/path/to/logjam/selectors`  
-`@import 'the/path/to/logjam/settings`  
+`@import 'the/path/to/logjam/mixins'`  
+`@import 'the/path/to/logjam/selectors'`  
+`@import 'the/path/to/logjam/settings'`  
 
 This is useful in a ITCSS type of situation.
 
